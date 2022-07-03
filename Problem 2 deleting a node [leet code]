@@ -93,6 +93,41 @@ class Solution:
         # print(head)
         return head
         
+        
+#Altenateive by Etawah_Coder
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        cur=head
+        count=1
+        while cur.next!=None:
+            count=count+1
+            previous=cur
+            cur=cur.next
+        cur=head
+        if count==n:
+            if count==1:
+                head.val=""
+            else:
+                cur=cur.next
+                return cur
+        elif count>n:
+                i=1
+                while i<count-n:
+                    print(cur)
+                    cur=cur.next
+                    i=i+1
+                cur.next=(cur.next).next
+                
+        return head
+        
+        
             
         
         
