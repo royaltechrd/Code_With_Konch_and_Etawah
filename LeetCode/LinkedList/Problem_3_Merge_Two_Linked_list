@@ -1,4 +1,5 @@
-#Alternate 1
+#Alternate 1:
+
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy= ListNode()
@@ -19,6 +20,7 @@ class Solution:
         return dummy.next
         
 #Messy Code :
+Tried and tested_by Etawah_Coder
 
 
 # Definition for singly-linked list.
