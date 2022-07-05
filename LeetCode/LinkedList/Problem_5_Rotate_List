@@ -26,23 +26,13 @@ class Solution:
         cur=temp
         while n!=0:
             if head.next==None:
-                print("this temp",head)
                 return head
-            # if head
             prev=None
             while cur.next!=None:
                 prev=cur
                 cur=cur.next
             prev.next=None
-            print(prev,cur,temp)
             cur.next=temp
-            # cur=head
-            print(cur,head,"I Loop")
-            # while (cur.next).next!=None:
-            #     cur=cur.next
-            #     print(cur,head,"II Loop")
-            # cur.next=None
             temp=cur
             n=n-1
-            print(n,"this cur",cur,"temp",temp)
         return cur
