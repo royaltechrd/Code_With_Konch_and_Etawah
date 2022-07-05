@@ -9,21 +9,30 @@ class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         temp=head
         cur=temp
+        
+        #Initialise the Counter
         count=0
         if head is None:
+            # If the List is empty then return it no purpose of rotating it
             count=0
             return head
         else: 
             count=1
+        
+        # Finding the length of the Linked List
         while cur.next!=None:
             cur=cur.next
             count+=1
+        #Division of length and given int to rotate as we can reduce the iteration
+        # as rotate the n times of n length of linked list have no meaning as it will return the same thing
         if k>=count:
             n=k%count
         else:
             n=k
         print(n,count,k)
         cur=temp
+        
+        #Main Program 
         while n!=0:
             if head.next==None:
                 return head
