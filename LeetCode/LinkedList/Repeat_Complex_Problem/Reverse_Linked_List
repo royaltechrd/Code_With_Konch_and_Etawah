@@ -1,0 +1,13 @@
+#Iterative method for reversing the Linked List
+
+def reverseList(self, head):
+    prev = None
+    while head:
+        curr = head
+        head = head.next
+        curr.next = prev
+        prev = curr
+    return prev
+
+#Recursive Method for reversing the Linked list:
+Try this in Group
