@@ -1,0 +1,60 @@
+# Etawah_Coder
+# Working absolute Fine
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        
+        left,right=ListNode(),ListNode()
+        ltail,rtail=left,right
+        
+        while head:
+            if head.val<x:
+                
+                ltail.next=head
+                ltail=ltail.next
+            else:
+                rtail.next=head
+                rtail=rtail.next
+            head=head.next            
+        
+        ltail.next=right.next  #For Joining the 
+        rtail.next=None #For stopping the Cycle Formation
+        return left.next
+        
+ # Trry to solve by the below method
+    # Tried and tested but finding a little bit intimidating  
+#  if cur.val<x:
+#                 ltail.next=cur
+#                 ltail=ltail.next
+#                 cur=cur.next
+#                 if cur==None:
+#                     ltail.next=right.next
+#                     # cur=cur.next
+#             else:
+#                 rtail.next=cur
+#                 rtail=rtail.next
+#                 cur=cur.next
+#             if rtail.next==None:
+#                     None
+#             else:
+#                 rtail.next=None
+#         return left.next        
+ 
+
+        
+# #         while cur.next!=0:
+# #             if cur.val>x:
+# #                 cur=cur.next
+# #             else:
+# #                 lptr.next=cur
+# #                 print("lptr",lptr,"cur",cur)
+#                 lptr=lptr.next
+                
+#                 lptr.next= None
+#                 print("cur",cur)
+#                 cur=cur.next
+#                 print("partitionPtr.next",partitionPtr,"cur",cur)
