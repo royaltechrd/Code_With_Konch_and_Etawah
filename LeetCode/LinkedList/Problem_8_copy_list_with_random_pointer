@@ -1,0 +1,53 @@
+# Definition for a Node.
+# class Node:
+#     def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+#         self.val = int(x)
+#         self.next = next
+#         self.random = random
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        cur= head
+        newCopiedList=Node(0)
+        newCur=newCopiedList
+        
+        count=0
+        if head:
+            count=1
+        else:
+            return head
+        
+        randomIndexes={}
+        while cur!=None:
+            newCur.next=Node(cur.val)
+            newCur=newCur.next
+            # randomIndexes.append(cur.random)
+            cur=cur.next
+            
+        newCur=newCopiedList.next
+        curRdmPos=head
+        count1=1
+        
+        while curRdmPos:
+            rdmAdd=curRdmPos.random
+            temphead=head
+            tempnew = newCopiedList.next
+            count2=1
+            while temphead:
+                if rdmAdd == temphead:
+                    randomIndexes[count1] = count2
+                    newCur.random = tempnew
+                    break
+                temphead=temphead.next
+                tempnew = tempnew.next
+                count2 += 1
+            if count1 not in randomIndexes.keys() :
+                randomIndexes[count1] = None
+                newCur.random = None
+            randomIndexes = {}
+            newCur = newCur.next
+            curRdmPos=curRdmPos.next
+            count1 += 1
+            
+        return newCopiedList.next   
+       
