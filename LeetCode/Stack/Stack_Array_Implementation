@@ -1,0 +1,46 @@
+##################################
+
+class Stack():
+    def __init__(self,limit):
+        # Initialising the Array
+        self.stackPtr=[]
+
+        #Setting the limit for the array
+        self.limit=limit
+
+    def push(self,element):
+        if len(self.stackPtr)>self.limit:
+            print("Overflow Error")
+            return 0
+        else:
+            self.stackPtr.append(element)
+
+    def pop(self):
+        if len(self.stackPtr)>0:
+            print(self.stackPtr.pop())
+        else:
+            print("Underflow Error")
+            return 0
+    def size(self):
+        return len(self.stackPtr)
+    def isEmpty(self):
+        if len(self.stackPtr)==0:
+            return True
+        else:
+            return False
+    def peek(self):
+        return self.stackPtr[-1]
+
+stk1=Stack(5)
+
+stk1.push(10)
+stk1.push(314)
+stk1.push(95)
+stk1.push(100)
+stk1.push(13)
+print(stk1.isEmpty())
+
+print(stk1.push(111))
+stk1.pop()
+print(stk1.peek())
+
