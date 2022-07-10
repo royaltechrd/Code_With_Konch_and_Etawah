@@ -99,6 +99,110 @@ if isBalanced(strg):
     print("String is Balanced")
 else:
     print("String is not Balanced")
+    
+    
+    
+ ################################################################################################################################################
+ ########## Method 2 ################### 
+ 
+ class Node:
+    def __init__(self):
+        self.data = None
+        self.next = None
+    def setData(self,Data):
+        self.data = Data
+    def getData(self):
+        return self.data
+    def setNext(self,next):
+        self.next = next
+    def getNext(self):
+        return self.next
+    def hasNext(self):
+        return self.next != None
+
+class stack(object):
+    def __init__(self,data=None):
+        self.head = None
+        if data:
+            for data in data:
+                self.push(data)
+    def push(self,data):
+        temp = Node()
+        temp.setData(data)
+        temp.next = self.head
+        self.head = temp
+    
+    def pop(self):
+        if self.head == None :
+            print("Stack Is Empty")
+        else:    
+            temp = self.head.getData()
+            self.head = self.head.getNext()
+            return temp
+    def getSize(self):
+        cur = self.head
+        if(cur):
+            count = 1
+            while cur:
+                count += 1
+                cur= cur.next
+        else:
+            count = 0
+        
+        return count
+    
+    def peek(self):
+        if(self.head == None):
+            print("Stack Is empty")
+        else:
+            return self.head.getData()
+    
+    def isEmpty(self):
+        if(self.head):
+            return False
+        else:
+            return True
+        
+    def printStack(self):
+        cur = self.head
+        stk = []
+        if(cur):
+            while cur:
+                stk.append(cur.data)
+                cur= cur.next
+        return stk
+        
+            
+def is_balanced(val):
+    if(len(val) == 0):
+        return True
+    symbol_stack = stack()
+    for i in val:
+        
+        if i in ['[','{','(',')','}',']']:
+            #print(symbol_stack.printStack())
+            if i in ['[','{','(']:
+                symbol_stack.push(i)
+            else:
+                if symbol_stack.isEmpty():
+                    return False
+                popped_symbol = symbol_stack.pop()
+                print("Popped"+popped_symbol)
+                if(( i == ')' and popped_symbol != '(') or ( i == '}' and popped_symbol != '{') or (i == ']' and popped_symbol != '[')):
+                    return False
+    return True
+
+    
+strinp = input("Enter string to check if it is balanced : ")
+if(is_balanced(strinp)):
+    print("String is Balanced")
+else:
+    print("String Is not Balanced")
+    
+    
+ 
+ 
+ 
 
 
 
