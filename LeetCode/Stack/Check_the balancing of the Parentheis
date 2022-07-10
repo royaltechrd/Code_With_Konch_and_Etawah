@@ -1,205 +1,51 @@
-#################
-# For Creation of the Linked list
-class Node:
-    def __init__(self):
-        self.data = None
-        self.next = None
-
-    def setData(self, Data):
-        self.data = Data
-
-    def getData(self):
-        return self.data
-
-    def setNext(self, next):
-        self.next = next
-
-    def getNext(self):
-        return self.next
-
-    def hasNext(self):
-        return self.next != None
-
-# For Creation of the Stack via Linked List:
-
-class Stack(object):
-    def __init__(self, data=None):
-        self.head = None
-        if data:
-            for data in data:
-                self.push(data)
-
-    def push(self, data):
-        temp = Node()
-        temp.setData(data)
-        temp.setNext ( self.head)
-        self.head = temp
-
-    def pop(self):
-        if self.head == None:
-            print("Stack Is Empty")
-        else:
-            temp = self.head.getData()
-            self.head = self.head.getNext()
-            return temp
-
-    def getSize(self):
-        cur = self.head
-        if (cur):
-            count = 1
-            while cur:
-                count += 1
-                cur = cur.next
-        else:
-            count = 0
-
-        return count
-
-    def peek(self):
-        if (self.head == None):
-            print("Stack Is empty")
-        else:
-            return self.head.getData()
-
-    def isEmpty(self):
-        if (self.head):
-            return False
-        else:
-            return True
-    def printAll(self):
-        temp=self.head
-        ele=[]
-        while temp:
-            ele.append(temp.getData())
-            print(temp.getData())
-            temp=temp.getNext()
-        return ele
-
-stack=Stack()
-print(stack.printAll())
-
-# To Check Balancing of the String
-
-def isBalanced(str):
-    stack
-    balList=["(",")","[","]","{","}"]
-    openList=["(","[","{"]
-    for char in str:
-        if char in balList:
-            if char in openList:
-                stack.push(char)
-            else:
-                if stack.isEmpty():
-                    return False
-                popped=stack.pop()
-                if (char==")" and popped=="(") or (char=="]" and popped=="[") or (char==")" and popped=="("):
-                    return True
-strg=input("Enter the String to check whether it is balance or not")
-if isBalanced(strg):
-    print("String is Balanced")
-else:
-    print("String is not Balanced")
+class Stack():
     
-    
-    
- ################################################################################################################################################
- ########## Method 2 ################### 
- 
- class Node:
-    def __init__(self):
-        self.data = None
-        self.next = None
-    def setData(self,Data):
-        self.data = Data
-    def getData(self):
-        return self.data
-    def setNext(self,next):
-        self.next = next
-    def getNext(self):
-        return self.next
-    def hasNext(self):
-        return self.next != None
-
-class stack(object):
-    def __init__(self,data=None):
-        self.head = None
-        if data:
-            for data in data:
-                self.push(data)
+    def __init__(self,):
+        self.stack=[]
+        
     def push(self,data):
-        temp = Node()
-        temp.setData(data)
-        temp.next = self.head
-        self.head = temp
-    
-    def pop(self):
-        if self.head == None :
-            print("Stack Is Empty")
-        else:    
-            temp = self.head.getData()
-            self.head = self.head.getNext()
-            return temp
-    def getSize(self):
-        cur = self.head
-        if(cur):
-            count = 1
-            while cur:
-                count += 1
-                cur= cur.next
-        else:
-            count = 0
-        
-        return count
-    
-    def peek(self):
-        if(self.head == None):
-            print("Stack Is empty")
-        else:
-            return self.head.getData()
-    
-    def isEmpty(self):
-        if(self.head):
-            return False
-        else:
-            return True
-        
-    def printStack(self):
-        cur = self.head
-        stk = []
-        if(cur):
-            while cur:
-                stk.append(cur.data)
-                cur= cur.next
-        return stk
-        
+        self.stack.append(data)
             
-def is_balanced(val):
-    if(len(val) == 0):
-        return True
-    symbol_stack = stack()
-    for i in val:
+    def pop(self):
+        if len(self.stack)>0:
+            return self.stack.pop()
+        else:
+            return False
+    def isEmpty(self):
+        if len(self.stack)==0:
+            return True
+        else:
+            return False
+    def printElement(self):
+        element=[]
+        for i in self.stack:
+            element.append(i)
+            
+        return element
         
-        if i in ['[','{','(',')','}',']']:
-            #print(symbol_stack.printStack())
-            if i in ['[','{','(']:
-                symbol_stack.push(i)
-            else:
-                if symbol_stack.isEmpty():
-                    return False
-                popped_symbol = symbol_stack.pop()
-                #print("Popped"+popped_symbol)
-                if(( i == ')' and popped_symbol != '(') or ( i == '}' and popped_symbol != '{') or (i == ']' and popped_symbol != '[')):
-                    return False
-    if symbol_stack.isEmpty():
-        return True
-    else:
-        return False
+        
+        
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack=Stack()
+        for char in s:
+            if char in ["(",")","[","]","{","}"]:
+                if char in ["(","{","["]:
+                    stack.push(char)
+                    
+                else:
+                    
+                    if stack.isEmpty():
+                        return False
+                    popped =stack.pop()
+                    
+                    
+                    if (char ==")" and popped=="(")or (char =="]" and popped=="[")or (char =="}" and popped=="{"):
+                        continue
+                    else:
+                        return False
 
-    
-strinp = input("Enter string to check if it is balanced : ")
-if(is_balanced(strinp)):
-    print("String is Balanced")
-else:
-    print("String Is not Balanced")
-    
-    
+        if stack.isEmpty():
+            return True
+        else:
+            return False
