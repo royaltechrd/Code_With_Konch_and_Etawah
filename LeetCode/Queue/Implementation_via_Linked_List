@@ -1,0 +1,73 @@
+#Node Creation with last attribute
+class Node():
+    def __init__(self,data=None,next=None):
+        self.data=data
+        self.next=next
+        self.last=None
+    def setData(self,data):
+        self.data=data
+    def getData(self):
+        return self.data
+    def setNext(self,next):
+        self.next=next
+    def getNext(self):
+        return self.next
+    def setLast(self,last):
+        self.last=last
+    def getLast(self):
+        return self.last
+
+class Queue():
+    def __init__(self,data=None):
+
+        self.front=None
+        self.rear=None
+        self.size=0
+
+    def enQueue(self,data):
+        self.lastNode=self.front
+        self.front=Node(data,self.front)  #Using None and creating a Node and also putting the last one as a lastnode
+        if self.lastNode:
+            self.lastNode.setLast(self.front)
+        if self.rear is None:
+            self.rear=self.front
+        self.size+=1
+    def deQueue(self):
+        if self.rear is None:
+            print ("Sorry, the Queue is Empty!")
+            raise IndexError
+        result=self.rear.getData()
+        self.rear=self.rear.last
+        self.size-=1
+        return result
+
+    def queueRear(self):
+        if self.front is None:
+            print("Sorry, the Queue is Empty!")
+            raise IndexError
+        return self.rear.getData()
+
+    def queueFront(self):
+        if self.front is None:
+            print("Sorry, the Queue is Empty!")
+            raise IndexError
+        return self.front.getData()
+
+    def queuesize(self):
+        return self.size
+
+que = Queue()
+que. enQueue(" first")
+print ("Front: "+que.queueFront())
+print ("Rear: "+que.queueRear())
+que.enQueue("second")
+print ("Front: "+que.queueFront())
+print ("Rear: "+que.queueRear())
+que.enQueue("third")
+print ("Front: "+que.queueFront())
+print ("Rear: "+que.queueRear())
+print ("Dequeuing: "+que.deQueue())
+print ("Front: "+que.queueFront())
+
+
+
