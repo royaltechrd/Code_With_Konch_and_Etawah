@@ -187,10 +187,13 @@ def is_balanced(val):
                 if symbol_stack.isEmpty():
                     return False
                 popped_symbol = symbol_stack.pop()
-                print("Popped"+popped_symbol)
+                #print("Popped"+popped_symbol)
                 if(( i == ')' and popped_symbol != '(') or ( i == '}' and popped_symbol != '{') or (i == ']' and popped_symbol != '[')):
                     return False
-    return True
+    if symbol_stack.isEmpty():
+        return True
+    else:
+        return False
 
     
 strinp = input("Enter string to check if it is balanced : ")
@@ -200,14 +203,3 @@ else:
     print("String Is not Balanced")
     
     
- 
- 
- 
-
-
-
-
-
-
-
-
