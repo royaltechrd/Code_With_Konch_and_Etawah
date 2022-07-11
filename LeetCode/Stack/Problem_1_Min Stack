@@ -1,0 +1,58 @@
+####################################################################################
+
+Runtime: 1268 ms, faster than 5.01% of Python3 online submissions for Min Stack.
+Memory Usage: 17.8 MB, less than 94.23% of Python3 online submissions for Min Stack.
+A little bit Slow Program but can be a Good Memory saver
+class MinStack:
+
+    def __init__(self):
+        self.stack=[]
+    def push(self, val: int) -> None:
+        return self.stack.append(val)
+
+    def pop(self) -> None:
+        if self.stack==0:
+            return "You can't Pop"
+        else:
+            return self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return min(self.stack)
+        
+        
+
+
+####################################################################################
+
+Runtime: 115 ms, faster than 35.16% of Python3 online submissions for Min Stack.
+Memory Usage: 18.2 MB, less than 29.38% of Python3 online submissions for Min Stack.
+More Optimise Solution in case of memory and runtime in comparison with the old Program Code
+
+class MinStack:
+
+    def __init__(self):
+        self.stack = []
+
+    def push(self, x):
+        if self.stack:
+			self.stack.append(min(self.stack[-2], x))
+        else:
+            self.stack.append(x)
+        self.stack.append(x)
+        
+
+    def pop(self):
+        if self.stack:
+            self.stack.pop()
+            self.stack.pop()
+
+    def top(self):
+        if self.stack:
+            return self.stack[-1]
+
+    def getMin(self):
+        if self.stack:
+            return self.stack[-2]
