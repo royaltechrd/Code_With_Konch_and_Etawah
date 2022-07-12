@@ -1,0 +1,60 @@
+##########################################################
+Runtime: 148 ms, faster than 39.46% of Python3 online submissions for Reorder List.
+Memory Usage: 24.2 MB, less than 14.26% of Python3 online submissions for Reorder List.
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        cur=head
+        stackrev=[]
+        stackfront=[]
+        
+        count=0
+        while cur:
+            cur= cur.next
+            count+=1
+        
+        cur=head
+        loopcount=ceil(count/2)
+        
+        i=0
+        for i in range(0,loopcount):
+            stackfront.append(cur)
+            cur=cur.next
+        while cur:
+            stackrev.append(cur)
+            cur=cur.next
+        i=0
+        
+        revStack=list(reversed(stackrev))
+        cur=head
+        llnode=1
+        i=0
+        while llnode !=count:
+            if llnode%2==1:
+                cur.next=revStack[i]
+                cur=cur.next
+                llnode+=1
+
+            else:
+                i+=1
+                cur.next=stackfront[i]
+                cur=cur.next
+                llnode+=1
+            if llnode==count:
+                cur.next=None
+
+                
+                
+                
+                
+                
+                
