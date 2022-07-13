@@ -1,0 +1,32 @@
+#################################################################################
+
+Runtime: 602 ms, faster than 81.90% of Python3 online submissions for Sort List.
+Memory Usage: 45 MB, less than 8.96% of Python3 online submissions for Sort List.
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        cur= head 
+        count=0
+        stack=[]
+        
+        while cur :
+            stack .append(cur.val)
+            cur=cur.next
+            count+=1
+        
+        stack.sort()
+        
+        temp =ListNode()
+        head=temp
+        for i in range (0, count):
+            head.next=ListNode(stack[i])
+            head=head.next
+            # print(head.val,head.next.val)
+
+        return temp.next            
+        
