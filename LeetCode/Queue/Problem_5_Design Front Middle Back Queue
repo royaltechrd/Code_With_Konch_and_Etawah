@@ -1,0 +1,93 @@
+#########################################################################################################
+
+Runtime: 128 ms, faster than 35.39% of Python3 online submissions for Design Front Middle Back Queue.
+Memory Usage: 14.7 MB, less than 13.85% of Python3 online submissions for Design Front Middle Back Queue.
+
+#########################################################################################################
+
+
+class FrontMiddleBackQueue:
+
+    def __init__(self):
+        self.que=collections.deque()
+        self.front=None
+        self.back=None
+        self.middle=None
+        self.size=0
+        
+        
+    def pushFront(self, val: int) -> None:
+        if self.size==0:
+            self.front=self.back=self.middle=0
+        else:
+            self.rear=self.size
+        self.que.appendleft(val)
+        self.size+=1
+        
+
+    def pushMiddle(self, val: int) -> None:
+        if self.size==0:
+            self.front=self.back=self.middle=0
+            self.que.append(val)
+        else:
+            self.que.insert(math.floor(len(self.que)/2),val)
+            self.rear=self.size
+        self.size+=1
+
+    def pushBack(self, val: int) -> None:
+        if self.size==0:
+            self.front=self.back=self.middle=0
+        else:
+            self.rear=self.size
+        self.que.append(val)
+        self.size+=1
+
+    def popFront(self) -> int:
+        if self.size==0:
+            return -1
+        else:
+            self.size-=1
+            if self.size:
+                self.rear=self.size-1
+            else:
+                self.rear=self.front=self.middle=None
+            return self.que.popleft()
+        
+    def popMiddle(self) -> int:
+        if self.size==0:
+            return -1
+        else:
+            s=self.que[math.floor((self.size-1)/2)]
+            del self.que[math.floor((self.size-1)/2)]
+            self.size-=1
+            if self.size:
+                self.rear=self.size-1
+            else:
+                self.rear=self.front=self.middle=None
+            return s
+       
+
+    def popBack(self) -> int:
+        if self.size==0:
+            return -1
+        else:
+            self.size-=1
+            if self.size:
+                self.rear=self.size-1
+            else:
+                self.rear=self.front=self.middle=None
+            return self.que.pop()
+       
+
+
+        
+
+
+# Your FrontMiddleBackQueue object will be instantiated and called as such:
+# obj = FrontMiddleBackQueue()
+# obj.pushFront(val)
+# obj.pushMiddle(val)
+# obj.pushBack(val)
+# param_4 = obj.popFront()
+# param_5 = obj.popMiddle()
+# param_6 = obj.popBack()
