@@ -1,0 +1,19 @@
+import os
+def delete_all_files(path):
+    new_path = path.strip(os.sep)
+    if(os.path.exists(new_path)):
+        scan_object = os.listdir(new_path)
+        if(len(scan_object) > 0):
+            for entry in scan_object:
+                entry_path = new_path+os.sep+entry
+                if os.path.isdir(entry_path):
+                    delete_all_files(new_path+os.sep+entry)
+                elif os.path.isfile(entry_path):
+                    os.remove(entry_path)           
+
+        os.rmdir(new_path)
+        return True
+    else:
+        return False
+    
+delete_all_files('E:\\tetfolder\\mov\\testjtdtdlhk')
