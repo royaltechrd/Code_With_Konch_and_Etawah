@@ -1,0 +1,25 @@
+################################################
+Theory Implementation of Tree PreOrder
+################################################
+
+def recPreOrderTraversal(root,result):
+    if not root:
+        return
+    print(root.data)
+    result.append(root.dataa)
+    recPreOrderTraversal(root.left,result)
+    recPreOrderTraversal(root.right, result)
+
+def nonRecPreOrderTraversal(root,result):
+    if not root:
+        return
+    stack=[]
+    stack.append(root)
+    while stack:
+        node=stack.pop()
+        print(node.data)
+        if node .right:
+            stack.append(node.right)
+            node=node.right
+        if node .left:
+            stack.append(node.left)
