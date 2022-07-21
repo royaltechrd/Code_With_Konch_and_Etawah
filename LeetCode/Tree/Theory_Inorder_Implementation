@@ -1,0 +1,25 @@
+#####################################################
+Implementation of Inorder Traversal of Tree 
+#####################################################
+
+def recInoderTraversal(root,result):
+    if not root:
+        return
+    recInoderTraversal(root.left,result)
+    result.append(root.data)
+    recInoderTraversal(root.right, result)
+
+def nonRecInoderTraversal(root,result):
+    if not root:
+        return
+    stack=[]
+    stack.append(root)
+    node=root
+    while stack or node:
+        if node:
+            stack.append(node.data)
+            node=node.left
+        else:
+            node=stack.pop()
+            result.append(node.data)
+            node=node.right
